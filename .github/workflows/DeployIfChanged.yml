@@ -11,12 +11,12 @@ jobs:
     deploy-slider-server:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout Main Source
+            - name: Checkout main Source
               uses: actions/checkout@v2
 
-            - name: Push to Main-deploy
+            - name: Push to main-deploy
               uses: JamesIves/github-pages-deploy-action@releases/v3
               with:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  BRANCH: Main
+                  BRANCH: main
                   FOLDER: .
