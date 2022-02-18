@@ -67,7 +67,7 @@ The latter allows you to plug in values that you would have defined here.
 
 @def add_github_view  = true
 @def add_github_star  = true
-@def github_repo      = "mitmath/18S191"
+@def github_repo      = "likanzhan/JuliaLearn"
 
 <!-- SECTION LAYOUT
 NOTE:
@@ -75,7 +75,7 @@ NOTE:
                     you can also set it for individual sections by specifying
                     the width argument: `\begin{:section, ..., width=10}`.
 -->
-@def section_width = 10
+@def section_width = 8
 
 <!-- COLOR PALETTE
 You can use Hex, RGB or SVG color names; these tools are useful to choose:

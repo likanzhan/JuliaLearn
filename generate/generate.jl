@@ -55,16 +55,16 @@ md"""
 """
 
 # ╔═╡ 2bee2fc7-3322-457f-a835-028c80eaf059
-TITLE = "A Great Course"
+TITLE = "Julia 语言"
 
 # ╔═╡ a0057e4c-0bcf-4970-8a2b-0412ad5af510
-SUBTITLE = "Content and Code"
+SUBTITLE = "由此开始"
 
 # ╔═╡ 4be56e57-fea0-4fbe-9659-44bed594b1b2
-INSTITUTION = "University of Greatness"
+INSTITUTION = "BLCU"
 
 # ╔═╡ ab7186a4-2287-41da-a939-70f142bfeacd
-TERM = "Spring 2022"
+TERM = "2022"
 
 # ╔═╡ 83130e69-9b67-44b5-ad32-500162abc0d2
 md"""
@@ -79,7 +79,7 @@ available at `https://username.github.io/YourPackage.jl/` then the pre-path shou
 
 # ╔═╡ 88e1e91d-0d48-42e0-b4ab-4866624fd745
 begin
-	PREPATH = "pluto-course-template"
+	PREPATH = "JuliaLearn"
 	@skip_as_script PREPATH = ""
 end
 
@@ -89,24 +89,24 @@ md"""
 """
 
 # ╔═╡ c5e00f30-e734-4b59-97b9-8e5f59fd131e
-add_notebook_header = true
+add_notebook_header = false
 
 # ╔═╡ 0b81d3ff-fa78-48c3-878c-24f9d6a34f20
-show_section_number = false
+show_section_number = true
 
 # ╔═╡ 01a2336a-5c04-4d5a-bb0b-a9c704517dbf
 pages = [
-	(page = "/logistics/", title = "Class Logistics"),
-	(page = "/syllabus/", title = "Syllabus"),
-	(page = "/installation/", title = "Software installation"),
-	(page = "/cheatsheets/", title = "Cheatsheets")
+	# (page = "/logistics/", title = "Class Logistics"),
+	# (page = "/syllabus/", title = "Syllabus"),
+	# (page = "/installation/", title = "Software installation"),
+	(page = "/cheatsheets/", title = "常用信息")
 ]
 
 # ╔═╡ c0768146-5ea0-4736-94f8-2c1a2affa922
 SLASH_PREPATH = !isempty(PREPATH) ? "/" * PREPATH : ""
 
 # ╔═╡ 02e00e09-76a5-4f38-8557-4d9caf280b4c
-homepage = (page = "/index.html", href = "$SLASH_PREPATH/", title = "Welcome")
+homepage = (page = "/index.html", href = "$SLASH_PREPATH/", title = "写在前面")
 
 # ╔═╡ d83ee9b9-d255-4217-a776-3b0f4f168c8f
 @bind regenerate Button("Regenerate!")
@@ -210,8 +210,7 @@ end
 
 # ╔═╡ 3e93e57c-3660-416f-9874-d43abf99e60e
 INSTRUCTORS = [
-	(name = "Person 1", href = ""),
-	(name = "Person 2", href = "")
+	(name = "战立侃", href = "https://likan.org"),
 ] |> instructors
 
 # ╔═╡ feaed8af-05d0-4b80-9f69-8f827f9343a8
@@ -268,7 +267,7 @@ function sidebar_code(book_model)
     <br>
     $(map(enumerate(book_model)) do (chapter_number, chap)
 		@htl("""
-		<div class="course-section">Module $(chapter_number): $(chap.title)</div>
+		<div class="course-section"> $(chapter_number). $(chap.title)</div>
 		
 		$(map(enumerate(chap.contents)) do (section_number, section)
 
@@ -466,6 +465,12 @@ end
 
 # ╔═╡ a965eb6b-8c70-4986-a7b1-99c820c45716
 @skip_as_script @use_task([franklin_page_dir, file_server_port]) do
+
+	try
+		run(`sh -c "kill \$(lsof -t -i:4599)"`)
+	catch e
+    	"port $file_server_port is avaliable"
+	end
 
 	run(`$(Deno_jll.deno()) run --allow-net --allow-read https://deno.land/std@0.115.0/http/file_server.ts $(franklin_page_dir) --cors --port $(file_server_port)`)
 
