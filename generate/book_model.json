@@ -13,6 +13,12 @@
                 "notebook_path": "notebooks/DataScience/11-Covid-with-Julia.jl",
                 "video_id": "",
                 "preview_image_url": ""
+            },
+            {
+                "name": "调用类型和数据框",
+                "notebook_path": "notebooks/DataScience/220302-Value-Reference.jl",
+                "video_id": "",
+                "preview_image_url": ""
             }
         ]
     },

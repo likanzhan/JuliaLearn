@@ -1,13 +1,14 @@
-# Course logistics
+# 相关资源
 
-## Lectures and tutorials
+### Julia 语言本身
 
-coming soon
+### 统计相关
 
-## Problem sets
+- Nazarathy, Y., & Klok, H. (2021). *Statistics with Julia: Fundamentals for data science, machine learning and artificial intelligence*. Springer. <br> 相关资源：[网站](https://statisticswithjulia.org), [github](https://github.com/h-Klok/StatsWithJuliaBook), [Pluto](https://github.com/StatisticalRethinkingJulia/StatisticsWithJuliaPlutoNotebooks.jl) 
 
-coming soon
+### 贝叶斯统计
 
-## Evaluation
+- Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A., & Rubin, D. B. (2014). Bayesian Data Analysis. CRC Press. <br> 相关资源：[网站](http://www.stat.columbia.edu/~gelman/book/), [课程信息](https://github.com/avehtari/BDA_course_Aalto), [R 代码](https://github.com/avehtari/BDA_R_demos)
 
-coming soon
+- Nicenboim, B., Schad, D., & Vasishth, S. (2021). An Introduction to Bayesian Data Analysis for Cognitive Science. [在线阅读](https://vasishth.github.io/bayescogsci/book/)
+

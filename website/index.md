@@ -11,8 +11,3 @@ Julia 语言是一门面向未来的技术型编程语言。下面是 Julia 语�
 > [The Technical Programming Language of the Future](http://pages.stat.wisc.edu/~bates/JuliaForRProgrammers.pdf) - Douglas Bates
 
 要了解更多 Julia 语言本身的一般知识， 请参看 Julia 语言 [官方文档](https://docs.julialang.org)。
-
-
-# 相关参考书
-
-- Nazarathy, Y., & Klok, H. (2021). *Statistics with Julia: Fundamentals for data science, machine learning and artificial intelligence*. Springer.
