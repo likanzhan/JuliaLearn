@@ -37,6 +37,12 @@
         "title": "Julia 博客",
         "contents": [
             {
+                "name": "函数 `subset`的使用限制",
+                "notebook_path": "notebooks/JuliaBlogs/2022-03-03-Dataframe-subset.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
                 "name": "什么是闭包",
                 "notebook_path": "notebooks/JuliaBlogs/2022-02-15-Closure.jl",
                 "video_id": "",
