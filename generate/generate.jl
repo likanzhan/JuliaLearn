@@ -99,7 +99,7 @@ pages = [
 	# (page = "/logistics/", title = "Class Logistics"),
 	# (page = "/syllabus/", title = "Syllabus"),
 	# (page = "/installation/", title = "Software installation"),
-	(page = "/cheatsheets/", title = "常用信息")
+	(page = "/cheatsheets/", title = "相关资源")
 ]
 
 # ╔═╡ c0768146-5ea0-4736-94f8-2c1a2affa922
