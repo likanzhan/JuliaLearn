@@ -97,9 +97,9 @@ show_section_number = true
 # ╔═╡ 01a2336a-5c04-4d5a-bb0b-a9c704517dbf
 pages = [
 	# (page = "/logistics/", title = "Class Logistics"),
-	# (page = "/syllabus/", title = "Syllabus"),
-	# (page = "/installation/", title = "Software installation"),
-	(page = "/cheatsheets/", title = "相关资源")
+	(page = "/syllabus/", title = "课程大纲"),
+	(page = "/installation/", title = "软件安装"),
+	(page = "/cheatsheets/",  title = "相关资源")
 ]
 
 # ╔═╡ c0768146-5ea0-4736-94f8-2c1a2affa922
