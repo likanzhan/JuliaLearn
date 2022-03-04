@@ -37,7 +37,13 @@
         "title": "Julia 博客",
         "contents": [
             {
-                "name": "函数 `subset`的使用限制",
+                "name": "宏调用的注意事项",
+                "notebook_path": "notebooks/JuliaBlogs/2022-03-04-macro-invocation.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "函数 subset 的使用限制",
                 "notebook_path": "notebooks/JuliaBlogs/2022-03-03-Dataframe-subset.jl",
                 "video_id": "",
                 "preview_image_url": ""
