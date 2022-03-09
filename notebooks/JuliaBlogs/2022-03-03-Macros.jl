@@ -7,6 +7,9 @@ using InteractiveUtils
 # ╔═╡ eb30c73f-4f60-4fc4-8166-1da11585e628
 using PlutoUI
 
+# ╔═╡ c5bec4ad-8955-422a-bad3-4968d4d39c0c
+TableOfContents(title = "目录", aside = false)
+
 # ╔═╡ 858936b7-5ac7-42c0-8aa9-df1cbfe9d1f6
 md"""
 ### 引用不总产生 `Expr` 类型
@@ -30,46 +33,42 @@ md"""
 """
 
 # ╔═╡ 9f26dc3f-509f-451c-b0ef-b70aee06bfc0
-with_terminal() do
-	dump( :(1 + x) ) 
-end
+with_terminal(dump, 
+	:(1 + x)
+)
 
 # ╔═╡ 898c0633-f722-4c84-b568-06795c047e6a
-with_terminal() do
-	dump( :( sin(x) ) ) 
-end
+with_terminal(dump, 
+	:( sin(x) ) 
+) 
 
 # ╔═╡ f4091b2c-24c1-423d-af18-16cee421c552
-with_terminal() do
-	dump( :( x == y ) )
-end
+with_terminal(dump, 
+	:( x == y )
+)
 
 # ╔═╡ af589ba9-02e0-4334-8b3c-c9fec4d4635f
-with_terminal() do
-	dump(
+with_terminal(dump, 
     quote
         let x = 1
             x + 1
         end
     end
-	)
-end
+)
 
 # ╔═╡ ad714b6b-5f1a-4027-962c-dcd5d43a98ed
 import MacroTools: rmlines
 
 # ╔═╡ 3dd1474b-43d0-4aab-b27e-2256a0fe3156
-with_terminal() do
-	dump(
-		rmlines(
-	    quote
-	        let x = 1
-	            x + 1
-	        end
-	    end
-		)
+with_terminal(dump, 
+	rmlines(
+	quote
+		let x = 1
+			x + 1
+		end
+	end
 	)
-end
+)
 
 # ╔═╡ 6eda4169-a034-42a9-a15b-4157421e7cba
 md"""
@@ -131,6 +130,146 @@ let y = :x
 		@true_quote(1 + $y),
 		:(1 + $y),
 	)
+end
+
+# ╔═╡ 2f1bd642-693e-4255-aa44-4661a28c69b3
+md"""
+### 建构于表达式之上的函数
+"""
+
+# ╔═╡ 7fae7a9b-3985-4547-a717-6375c58e62fd
+nargs(e::Expr) = length(e.args)
+
+# ╔═╡ feb85b7b-57e8-4e02-aa70-907fadc87985
+e1 = :(1 + 2 + 3)
+
+# ╔═╡ d830da2d-5ef6-4a99-9bee-3bb264e8da1e
+with_terminal(dump, e1)
+
+# ╔═╡ 3c43b095-dea0-499a-8cfc-288016aa289f
+nargs(e1)
+
+# ╔═╡ b7cda82e-aadb-45ae-a89a-87750aac13cf
+maxargs(e::Any) = 0
+
+# ╔═╡ 8912fe22-9d87-4526-a7d0-f9c90a4bcae7
+maxargs(e::Expr) = max(nargs(e), maximum(map(maxargs, e.args)))
+
+# ╔═╡ 1a70d5d4-ec58-4267-9cc8-6c45385ae6ac
+e2 = quote
+	z = 1 + log(x + y)
+	exp(z)
+end;
+
+# ╔═╡ f29ac37b-7f4e-4e98-85a0-f8b976733de0
+maxargs(e2)
+
+# ╔═╡ 06edfd58-799d-49a2-b64b-89648d9c8e6a
+# with_terminal(dump, e2)
+
+# ╔═╡ c970f478-e372-4ed5-b947-7c8b14b3c3a8
+md"""
+# MM
+"""
+
+# ╔═╡ f7546504-48b2-44c9-b64e-74b01e5a7eab
+macro bad_macro()
+	x = rand()
+	:($x)
+end
+
+# ╔═╡ 9b984175-05b7-4dd0-80ec-efe6d11781d8
+with_terminal() do
+	for i in 1:10
+		println(@bad_macro(), "||", i)
+	end
+end
+
+# ╔═╡ e8e2bc44-c8f4-4d6c-8d32-8deb69ec7852
+md"""
+### 卫生宏
+"""
+
+# ╔═╡ fb755431-fa70-413d-816b-4b92979033a9
+macro assign1(name, e)
+	Expr(:(=), name, e)
+end
+
+# ╔═╡ 265e20b1-d5e2-4f82-b9f9-e9f541235520
+@assign1(z1, 1)
+
+# ╔═╡ 74bce9d0-9bab-4493-a86b-16ccdf9018dc
+z1
+
+# ╔═╡ b4eac822-a1b2-4887-b50a-1c2e0611dbdc
+@macroexpand(@assign1(z1, 1))
+
+# ╔═╡ d10ab636-653f-4be2-8e38-0b6f341b5e9a
+let name = :z1, e = :(1)
+	Expr(:(=), name, e)
+end
+
+# ╔═╡ 669c9315-e26c-4732-964c-0eb26a1e1365
+let name = :z1, e = :(1)
+	Expr(:(=), gensym(name), e)
+end
+
+# ╔═╡ 5bf2975a-611a-435e-a780-b1e39da2a324
+esc(:x)
+
+# ╔═╡ 12dd4c3a-d297-4966-af2c-aa627dd29d0d
+esc(:(1 + x))
+
+# ╔═╡ 061e722b-cfc3-4287-9199-3a348c49eb5d
+macro assign2(name, e)
+	Expr(:(=), esc(name), e)
+end
+
+# ╔═╡ ea39e5f4-248f-4ccd-b1ef-884200f27fd6
+@assign2(z2, 1)
+
+# ╔═╡ 8e72ecad-dd20-4e46-90f4-7c0c2fc318fc
+z2
+
+# ╔═╡ 27ef040e-ab61-4971-af74-f8f9e18cb473
+macro assign3(name, e)
+	esc(Expr(:(=), name, e))
+end
+
+# ╔═╡ a63883bf-abe6-4038-a609-be4c901025ee
+@assign3(z3, 1)
+
+# ╔═╡ 326bc784-0148-4c91-8772-4b3d2b37d5c3
+z3
+
+# ╔═╡ 0b930b9b-d30a-4b34-91bc-1970ae5c93ac
+md"""
+### 展开顺序
+"""
+
+# ╔═╡ 32a42762-b2fd-4d7c-8159-c5b130014b38
+macro foo(e)
+	println("In Foo")
+	e
+end
+
+# ╔═╡ 60df657b-0f71-418c-8162-3a0489a185f0
+macro bar(e)
+	println("In Bar")
+	e
+end
+
+# ╔═╡ 5c506881-3abe-40aa-980e-35be0c64e488
+@bar(1)
+
+# ╔═╡ 0686ce0f-59ed-4e07-9af1-203208f6183e
+with_terminal() do
+	@foo(1)
+end
+
+# ╔═╡ 018e62a9-5614-45f7-a9f9-41b70f2dad8b
+with_terminal() do
+	@foo(@bar(1))
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -358,6 +497,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 
 # ╔═╡ Cell order:
 # ╠═eb30c73f-4f60-4fc4-8166-1da11585e628
+# ╟─c5bec4ad-8955-422a-bad3-4968d4d39c0c
 # ╟─858936b7-5ac7-42c0-8aa9-df1cbfe9d1f6
 # ╠═8c57aa1f-5c18-4292-b62c-f4909d1d4818
 # ╠═c8715a3a-9b04-11ec-04de-eb78afd78215
@@ -382,5 +522,39 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═0bb9c96e-be5b-45b3-954f-23a41a895c48
 # ╠═8802e2e4-11ea-48d8-929b-145944f4c4d8
 # ╠═c27aafb7-b211-4a6e-b013-01a98bb57a54
+# ╟─2f1bd642-693e-4255-aa44-4661a28c69b3
+# ╠═7fae7a9b-3985-4547-a717-6375c58e62fd
+# ╠═feb85b7b-57e8-4e02-aa70-907fadc87985
+# ╠═d830da2d-5ef6-4a99-9bee-3bb264e8da1e
+# ╠═3c43b095-dea0-499a-8cfc-288016aa289f
+# ╠═b7cda82e-aadb-45ae-a89a-87750aac13cf
+# ╠═8912fe22-9d87-4526-a7d0-f9c90a4bcae7
+# ╠═1a70d5d4-ec58-4267-9cc8-6c45385ae6ac
+# ╠═f29ac37b-7f4e-4e98-85a0-f8b976733de0
+# ╠═06edfd58-799d-49a2-b64b-89648d9c8e6a
+# ╠═c970f478-e372-4ed5-b947-7c8b14b3c3a8
+# ╠═f7546504-48b2-44c9-b64e-74b01e5a7eab
+# ╠═9b984175-05b7-4dd0-80ec-efe6d11781d8
+# ╠═e8e2bc44-c8f4-4d6c-8d32-8deb69ec7852
+# ╠═fb755431-fa70-413d-816b-4b92979033a9
+# ╠═265e20b1-d5e2-4f82-b9f9-e9f541235520
+# ╠═74bce9d0-9bab-4493-a86b-16ccdf9018dc
+# ╠═b4eac822-a1b2-4887-b50a-1c2e0611dbdc
+# ╠═d10ab636-653f-4be2-8e38-0b6f341b5e9a
+# ╠═669c9315-e26c-4732-964c-0eb26a1e1365
+# ╠═5bf2975a-611a-435e-a780-b1e39da2a324
+# ╠═12dd4c3a-d297-4966-af2c-aa627dd29d0d
+# ╠═061e722b-cfc3-4287-9199-3a348c49eb5d
+# ╠═ea39e5f4-248f-4ccd-b1ef-884200f27fd6
+# ╠═8e72ecad-dd20-4e46-90f4-7c0c2fc318fc
+# ╠═27ef040e-ab61-4971-af74-f8f9e18cb473
+# ╠═a63883bf-abe6-4038-a609-be4c901025ee
+# ╠═326bc784-0148-4c91-8772-4b3d2b37d5c3
+# ╠═0b930b9b-d30a-4b34-91bc-1970ae5c93ac
+# ╠═32a42762-b2fd-4d7c-8159-c5b130014b38
+# ╠═60df657b-0f71-418c-8162-3a0489a185f0
+# ╠═5c506881-3abe-40aa-980e-35be0c64e488
+# ╠═0686ce0f-59ed-4e07-9af1-203208f6183e
+# ╠═018e62a9-5614-45f7-a9f9-41b70f2dad8b
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

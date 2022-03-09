@@ -15,8 +15,14 @@
                 "preview_image_url": ""
             },
             {
-                "name": "调用类型和数据框",
+                "name": "调用类型",
                 "notebook_path": "notebooks/DataScience/2022-03-02-Value-Reference.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "合并和转化",
+                "notebook_path": "notebooks/DataScience/2022-03-09-DataFrame_Join_Transofrm.jl",
                 "video_id": "",
                 "preview_image_url": ""
             }
@@ -36,6 +42,12 @@
     {
         "title": "Julia 博客",
         "contents": [
+            {
+                "name": "样本方差为什么除以 n-1 ？",
+                "notebook_path": "notebooks/JuliaBlogs/2022-03-08-Sample_Variance.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
             {
                 "name": "宏调用的注意事项",
                 "notebook_path": "notebooks/JuliaBlogs/2022-03-04-macro-invocation.jl",
