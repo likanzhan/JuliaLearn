@@ -1,12 +1,21 @@
 # 相关资源
 
-### Julia 语言
+## 语言本身
+
+### 小抄本
 
 - [Fastrack to Julia](https://juliadocs.github.io/Julia-Cheat-Sheet/) cheatsheet.
 
 - [MATLAB-Julia-Python comparative cheatsheet](https://cheatsheets.quantecon.org/) by [QuantEcon group](https://quantecon.org)
 
+### 资源汇总
 
+- [JuliaHub](https://juliahub.com/ui/Home)
+
+- [Julia.jl](https://svaksha.github.io/Julia.jl/)
+
+
+## 统计
 ### 频率统计
 
 - Nazarathy, Y., & Klok, H. (2021). *Statistics with Julia: Fundamentals for data science, machine learning and artificial intelligence*. Springer. || [网站](https://statisticswithjulia.org), [github](https://github.com/h-Klok/StatsWithJuliaBook), [Pluto](https://github.com/StatisticalRethinkingJulia/StatisticsWithJuliaPlutoNotebooks.jl) 
