@@ -43,6 +43,12 @@
         "title": "Julia 博客",
         "contents": [
             {
+                "name": "数据列的嵌套和去嵌套",
+                "notebook_path": "notebooks/JuliaBlogs/2022-03-11-DataFrames-Nesting-Unnesting-Columns.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
                 "name": "样本方差为什么除以 n-1 ？",
                 "notebook_path": "notebooks/JuliaBlogs/2022-03-08-Sample_Variance.jl",
                 "video_id": "",
