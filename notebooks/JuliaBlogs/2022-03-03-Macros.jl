@@ -10,6 +10,19 @@ using PlutoUI
 # ╔═╡ c5bec4ad-8955-422a-bad3-4968d4d39c0c
 TableOfContents(title = "目录", aside = false)
 
+# ╔═╡ 7d53a8fa-fd00-4503-93b1-0dae05578700
+md"""
+### 什么是宏
+"""
+
+# ╔═╡ 4d7165a9-c781-40e2-bd42-82df2be034a2
+md"""
+宏从本质上讲是一种函数。 该函数的参数是一段或多段引用代码 （`quoted code`）， 其返回值也是一段引用的代码。 
+
+且该函数仅在编译阶段被唯一运行一次。
+被运行
+"""
+
 # ╔═╡ 858936b7-5ac7-42c0-8aa9-df1cbfe9d1f6
 md"""
 ### 引用不总产生 `Expr` 类型
@@ -498,6 +511,8 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╔═╡ Cell order:
 # ╠═eb30c73f-4f60-4fc4-8166-1da11585e628
 # ╟─c5bec4ad-8955-422a-bad3-4968d4d39c0c
+# ╟─7d53a8fa-fd00-4503-93b1-0dae05578700
+# ╠═4d7165a9-c781-40e2-bd42-82df2be034a2
 # ╟─858936b7-5ac7-42c0-8aa9-df1cbfe9d1f6
 # ╠═8c57aa1f-5c18-4292-b62c-f4909d1d4818
 # ╠═c8715a3a-9b04-11ec-04de-eb78afd78215
