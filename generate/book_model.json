@@ -32,6 +32,12 @@
         "title": "Julia 与统计分析",
         "contents": [
             {
+                "name": "描述统计",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-03-16-DataFrame-Variance.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            }
+            {
                 "name": "一个例子",
                 "notebook_path": "notebooks/FrequentistStatistics/01-Distributions.jl",
                 "video_id": "",
