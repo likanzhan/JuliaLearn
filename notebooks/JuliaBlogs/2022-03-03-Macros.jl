@@ -24,28 +24,36 @@ md"""
 
 # ╔═╡ 858936b7-5ac7-42c0-8aa9-df1cbfe9d1f6
 md"""
-### 引用能产生很多类型
+### 代码引用产生很多类型
 """
-
-# ╔═╡ 06fc3b63-a4ee-470f-a6f9-ebb7e033e527
-
 
 # ╔═╡ 8c57aa1f-5c18-4292-b62c-f4909d1d4818
 md"""
-代码引用是通过 `:( )` 来实现的， 例如： 
+宏的内核是以引用代码为输入参数的函数， 所以明白代码引用在 Julia 的工作机制很重要。 由于下面两个原因， Julia 的引用机制稍显混乱： （1） 代码引用可以产生包括 `Expr` 类在内的很多数据类型。 所以宏的参数并不总是 `Expr` 类的实例； （2） 输入到宏参数的引用和存在于宏之外的引用有不同的引用机制。 
+
+Julia 中 `:( )` 和 `quote` 都可被用作代码引用， 例如： 
 """
 
-# ╔═╡ c8715a3a-9b04-11ec-04de-eb78afd78215
-typeof( :(1) ),
-typeof( :(:x) ),
-typeof( :(x) ),
-typeof( :(1 + x) ),
-typeof( quote 1 + x end ),
-typeof( quote 1 + x; x + 1 end)
+# ╔═╡ 67aa4a88-46b6-4a5f-af89-3f72a977c8cb
+dt = [:(1), :(:x), :(x), :(1 + x),
+	  quote 1 end, quote 1 + x end, quote 1 + x; x + 1 end];
+
+# ╔═╡ 3958f679-6c86-4731-a6e9-9ac597326f44
+[typeof.(dt) dt]
+
+# ╔═╡ ba2ec22d-d255-4bc7-8cc3-d090f00da1fc
+md"""
+虽然前面的例子都可看作代码引用， 但是只有 `:(1 + x)` 和 `quote` 包裹的模块产生的实例类型为 `Expr`。 与其他语言不同， **Julia 语言没有把所有代码引用值包裹为某种类型的 `Expr`， 所以 Julia 中宏的参数必须具备处理非 `Expr` 类型输入的能力。**
+"""
 
 # ╔═╡ ef39222a-0c18-4eae-b883-88eff1015077
 md"""
-### 不同类型的 `Expr` 类型
+### 类型 `Expr` 有复杂的结构
+"""
+
+# ╔═╡ 1275c1f6-2c09-4c39-b253-dd857128ef27
+md"""
+与 `Lisp` 不同， Julia 复杂的句法系统使得 Julia 能够产生很多不同的 `Expr` 对象， 你需要一些策略来掌握这种复杂性。 来看一些例子：
 """
 
 # ╔═╡ 9f26dc3f-509f-451c-b0ef-b70aee06bfc0
@@ -63,6 +71,26 @@ with_terminal(dump,
 	:( x == y )
 )
 
+# ╔═╡ bc81576d-b1a0-4060-8487-a13da3c8bc42
+with_terminal(dump, 
+    begin
+		y = 1
+		y + 1
+	end
+)
+
+# ╔═╡ eef769c8-e69d-4e0a-a95e-01fc9eb76205
+with_terminal(dump, 
+    :(2)
+)
+
+# ╔═╡ 60dce293-35c3-4a31-a6f8-1bcaae2ff644
+with_terminal(dump, 
+    quote
+		2
+    end
+)
+
 # ╔═╡ af589ba9-02e0-4334-8b3c-c9fec4d4635f
 with_terminal(dump, 
     quote
@@ -71,6 +99,11 @@ with_terminal(dump,
         end
     end
 )
+
+# ╔═╡ 6ddfc2f8-167f-4236-8095-990b0136285e
+md"""
+后面两个例子显示， 由 `quote` 包裹的引用代码除去包含了指向实际代码的 `Expr` 对象之外， 还包含了类型为 `LineNumberNode` 的对象表示该代码所处的位置。 `LineNumberNode` 在错误报告时非常重要， 但通常会形成干扰。 此时你可以用 `MacroTools.jl` 中的 `rmlines` 删除这些对象， 但该函数无法递归性的删除这些对象。 例如：
+"""
 
 # ╔═╡ ad714b6b-5f1a-4027-962c-dcd5d43a98ed
 import MacroTools: rmlines
@@ -88,7 +121,12 @@ with_terminal(dump,
 
 # ╔═╡ 6eda4169-a034-42a9-a15b-4157421e7cba
 md"""
-对象 `Expr` 的类型是非常多的， 这个 [gist](https://gist.github.com/johnmyleswhite/17d8e897e995874ce04f2fc102b59991) 列出了Julia基础包中 `Expr` 的类型及相对频率。 Julia [编译器](https://github.com/JuliaLang/julia/blob/a645d7f256c2d1634869fa927c90d4e282ff0a47/src/ast.scm#L75) 给出了所有可能类型。
+对 `Expr` 对象能实现为什么类型有一个基本的了解对于掌握宏非常重要。 这个 [gist](https://gist.githubusercontent.com/johnmyleswhite/17d8e897e995874ce04f2fc102b59991/raw/be9e40f1014c0871e09a5fc9c044395fab62ddea/expr_kinds.txt) 列出了 jialia 基础包中 `Expr` 的类型及相对频率。 Julia 编译器中的 [ast.scm](https://github.com/JuliaLang/a/blob/a645d7f256c2d1634869fa927c90d4e282见ff0a47/src/ast.scm#L75) 穷尽式的给出了编译器能理解的所有可能类型。
+"""
+
+# ╔═╡ 23298a41-8f64-490d-ac4c-22691ad75038
+md"""
+除了执行一些引用代码并查看其结果外， 自己手动建构一些表达式也很有意义， 例如
 """
 
 # ╔═╡ 8362af9b-534f-429a-9f7c-c79eef64840d
@@ -100,6 +138,106 @@ md"""
 # ╔═╡ b6e13d5e-7937-4918-a44d-fdf24e39785b
 :(1 + sin(x)) == Expr(:call, :+, 1, Expr(:call, :sin, :x))
 
+# ╔═╡ 0a6cddb7-3888-4c3e-9323-e5eab5301479
+md"""
+- **练习**
+"""
+
+# ╔═╡ f73a3a81-4439-4ba2-84f4-b060754cee0c
+# 1. 一个 for loop
+fl = 
+Expr(
+	:for,
+	Expr(
+		:(=),
+		:i,
+		Expr(
+			:call,
+			:(:),
+			1,
+			2
+		)
+	),
+	Expr(
+		:call,
+		:println,
+		Expr(
+			:call,
+			:(*),
+			:i,
+			3	
+		)
+	)
+)
+
+# ╔═╡ 18ebacb7-6b6e-4347-b175-aa9b7c98f93e
+with_terminal() do
+	eval(fl)
+end
+
+# ╔═╡ cf7d932f-9b22-44de-a178-73b5327964fd
+# 2. 一个条件表达式
+iff = 
+Expr(
+	:if,
+	Expr(
+		:call,
+		:(<=),
+		:z,
+		5
+	),
+	Expr(
+		:call,
+		:(+),
+		:z,
+		100
+	),
+	Expr(
+		:elseif,
+		Expr(
+			:call,
+			:(<=),
+			:z,
+			10
+		),
+		Expr(
+			:call,
+			:(+),
+			:z,
+			200
+		),
+		Expr(
+			:call,
+			:(+),
+			:z,
+			300
+		)
+	)
+)
+
+# ╔═╡ 0be7d504-32d1-43f5-92b5-0980487abb1a
+begin
+	z = 0
+	eval(iff)
+end
+
+# ╔═╡ daa034c0-92bd-47de-8377-de9b2c6403d3
+# 3. 定义一个匿名函数： x -> x + 1
+fun = 
+Expr(
+	:(->),
+	:x,
+	Expr(
+		:call,
+		:(+),
+		:x,
+		1
+	)
+)
+
+# ╔═╡ 620b63c4-f43b-4026-a787-63900dea046f
+eval(fun)(4)
+
 # ╔═╡ 80d488fa-8588-486a-b9ec-26544d2449bc
 md"""
 ### 引用和伪引用
@@ -107,7 +245,7 @@ md"""
 
 # ╔═╡ 268e84f3-bd32-4e9d-9d65-ee72a5d3d00c
 md"""
-由 `:( )` 和 `quote`  定义的引用和宏对其参数的引用是不同的。 前者执行的是伪引用 （[quasiquotation](https://courses.cs.washington.edu/courses/cse341/04wi/lectures/14-scheme-quote.html)）， 而后者则是真的引用。 二者的区别在于对插入（[interpolation](https://docs.julialang.org/en/v1/manual/metaprogramming/#man-expression-interpolation-1)）的处理。 在伪引用中， 美元符号 `$` 可被用于在引用表达式内插入值。 而在真正引用中， 美元符号只是被调用而不会执行插入操作。 例如：
+前面提到， Julia 内置的引用系统 （`:( )` 和 `quote`）和宏对其参数的引用机制是不同的。 前者执行的是伪引用 （[quasiquotation](https://courses.cs.washington.edu/courses/cse341/04wi/lectures/14-scheme-quote.html)）， 而后者执行的则是真引用。 二者的区别在于对插入（[interpolation](https://docs.julialang.org/en/v1/manual/metaprogramming/#man-expression-interpolation-1)）的处理。 在伪引用中， 美元符号 `$` 可被用于引用表达式内插入值。 而在真引用中， 美元符号只是被调用而不会执行插入操作。 例如：
 """
 
 # ╔═╡ ed3ea5e5-7aaa-4738-8cb3-31015308812f
@@ -123,17 +261,29 @@ let y = :x
 	:(1 + $y) 
 end
 
+# ╔═╡ 85115360-f7f2-4d4f-b493-5ccc4c19122f
+md"""
+与 `:()` 执行的伪引用不同， 当真引用中出现美元符号 `$` 时， 并会不执行差值过程， 而是会捕获相关描述插值过程的句法， 例如：
+"""
+
 # ╔═╡ 8919b66e-4f3e-474b-8a9e-8d1afa7ab757
 (
 :(1 + $x),                       # 伪引用
 Expr(:call, :+, 1, Expr(:$, :x)) # 真引用
 )
 
-# ╔═╡ ceb8e016-9225-4560-b97a-fdfbdf2d3cdd
-:x, typeof( :(x) )
+# ╔═╡ add73323-a15d-4b57-b9a8-d7b30428e3df
+md"""
+但是 Julia 并没有内置的句法以执行真引用操作， 这也就是我们直接用 `Expr` 来手动建构真引用的原因。 但是我们可以通过宏来执行真引用。 在写这个宏之前， 当对象处于真引用状态时， 该对象的存储类型为 `QuoteNode`。 例如：
+"""
 
-# ╔═╡ 0bb9c96e-be5b-45b3-954f-23a41a895c48
-:(:x), typeof( :(:x) )
+# ╔═╡ d45e0165-141b-4aaa-8399-0a38e8f2247e
+let qn = [:x, :(:x)]; [qn typeof.(qn)] end
+
+# ╔═╡ 8b102cba-3d07-408c-be44-f1b96d8b68ca
+md"""
+把一个符号 `Symbol` 包裹在 `QuoteNode` 之内咋看起来没有什么作用。 但当把该包裹结构放在宏之内时， 作用就体现出来了： 当包裹结构 `QuoteNode` 位于宏之内时， 说明包裹之内的代码在宏被执行完毕后依然会保持着引用状态。 看下面的例子：
+"""
 
 # ╔═╡ 8802e2e4-11ea-48d8-929b-145944f4c4d8
 macro true_quote(e)
@@ -143,14 +293,20 @@ end
 # ╔═╡ c27aafb7-b211-4a6e-b013-01a98bb57a54
 let y = :x
 	(
-		@true_quote(1 + $y),
-		:(1 + $y),
+	@true_quote(1 + $y),
+	:(1 + $y)
 	)
 end
 
+# ╔═╡ 4faba05d-20eb-4a3e-99b4-f6f32279cf1d
+md"""
+## MMM
+
+"""
+
 # ╔═╡ 2f1bd642-693e-4255-aa44-4661a28c69b3
 md"""
-### 建构于表达式之上的函数
+### WWW 建构于表达式之上的函数
 """
 
 # ╔═╡ 7fae7a9b-3985-4547-a717-6375c58e62fd
@@ -517,30 +673,47 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─7d53a8fa-fd00-4503-93b1-0dae05578700
 # ╟─4d7165a9-c781-40e2-bd42-82df2be034a2
 # ╟─858936b7-5ac7-42c0-8aa9-df1cbfe9d1f6
-# ╠═06fc3b63-a4ee-470f-a6f9-ebb7e033e527
-# ╠═8c57aa1f-5c18-4292-b62c-f4909d1d4818
-# ╠═c8715a3a-9b04-11ec-04de-eb78afd78215
+# ╟─8c57aa1f-5c18-4292-b62c-f4909d1d4818
+# ╠═67aa4a88-46b6-4a5f-af89-3f72a977c8cb
+# ╠═3958f679-6c86-4731-a6e9-9ac597326f44
+# ╟─ba2ec22d-d255-4bc7-8cc3-d090f00da1fc
 # ╟─ef39222a-0c18-4eae-b883-88eff1015077
+# ╟─1275c1f6-2c09-4c39-b253-dd857128ef27
 # ╠═9f26dc3f-509f-451c-b0ef-b70aee06bfc0
 # ╠═898c0633-f722-4c84-b568-06795c047e6a
 # ╠═f4091b2c-24c1-423d-af18-16cee421c552
+# ╠═bc81576d-b1a0-4060-8487-a13da3c8bc42
+# ╠═eef769c8-e69d-4e0a-a95e-01fc9eb76205
+# ╠═60dce293-35c3-4a31-a6f8-1bcaae2ff644
 # ╠═af589ba9-02e0-4334-8b3c-c9fec4d4635f
+# ╟─6ddfc2f8-167f-4236-8095-990b0136285e
 # ╠═ad714b6b-5f1a-4027-962c-dcd5d43a98ed
 # ╠═3dd1474b-43d0-4aab-b27e-2256a0fe3156
 # ╟─6eda4169-a034-42a9-a15b-4157421e7cba
+# ╟─23298a41-8f64-490d-ac4c-22691ad75038
 # ╠═8362af9b-534f-429a-9f7c-c79eef64840d
 # ╠═dd8be7b8-a8b8-4629-97f3-3748e79761fa
 # ╠═b6e13d5e-7937-4918-a44d-fdf24e39785b
+# ╟─0a6cddb7-3888-4c3e-9323-e5eab5301479
+# ╟─f73a3a81-4439-4ba2-84f4-b060754cee0c
+# ╠═18ebacb7-6b6e-4347-b175-aa9b7c98f93e
+# ╟─cf7d932f-9b22-44de-a178-73b5327964fd
+# ╠═0be7d504-32d1-43f5-92b5-0980487abb1a
+# ╟─daa034c0-92bd-47de-8377-de9b2c6403d3
+# ╠═620b63c4-f43b-4026-a787-63900dea046f
 # ╟─80d488fa-8588-486a-b9ec-26544d2449bc
 # ╟─268e84f3-bd32-4e9d-9d65-ee72a5d3d00c
 # ╠═ed3ea5e5-7aaa-4738-8cb3-31015308812f
 # ╠═5fad2af8-e8b6-4eff-99a0-04c5080f044b
 # ╠═4e17c358-6788-4b98-a650-70f785698fb3
+# ╟─85115360-f7f2-4d4f-b493-5ccc4c19122f
 # ╠═8919b66e-4f3e-474b-8a9e-8d1afa7ab757
-# ╠═ceb8e016-9225-4560-b97a-fdfbdf2d3cdd
-# ╠═0bb9c96e-be5b-45b3-954f-23a41a895c48
+# ╟─add73323-a15d-4b57-b9a8-d7b30428e3df
+# ╠═d45e0165-141b-4aaa-8399-0a38e8f2247e
+# ╟─8b102cba-3d07-408c-be44-f1b96d8b68ca
 # ╠═8802e2e4-11ea-48d8-929b-145944f4c4d8
 # ╠═c27aafb7-b211-4a6e-b013-01a98bb57a54
+# ╟─4faba05d-20eb-4a3e-99b4-f6f32279cf1d
 # ╟─2f1bd642-693e-4255-aa44-4661a28c69b3
 # ╠═7fae7a9b-3985-4547-a717-6375c58e62fd
 # ╠═feb85b7b-57e8-4e02-aa70-907fadc87985
