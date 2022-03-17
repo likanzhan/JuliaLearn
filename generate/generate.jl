@@ -38,13 +38,6 @@ using PlutoLinks: @use_task
 # ╔═╡ 6ee83d91-b1d1-4b1e-95ca-6874e44167da
 using UUIDs
 
-# ╔═╡ 9cb9559a-cbe4-4a4a-b974-cb9a3573f67d
-begin
- 	import Franklin
- 	using NodeJS
-	run(`$(npm_cmd()) install highlight.js`)
-end
-
 # ╔═╡ e2fc5eab-e333-4ff8-951b-89fdfe40eef8
 using Chain
 
@@ -416,6 +409,13 @@ md"""
 _powered by Franklin.jl_
 """
 
+# ╔═╡ 9cb9559a-cbe4-4a4a-b974-cb9a3573f67d
+begin
+ 	import Franklin
+ 	# using NodeJS
+	# run(`$(npm_cmd()) install highlight.js`)
+end
+
 # ╔═╡ 0e1a2d5b-16da-49e9-98b3-6f1202fd0fa1
 begin
 	current_dir = pwd()
@@ -785,7 +785,6 @@ Franklin = "713c75ef-9fc9-4b05-94a9-213340da978e"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
 Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
-NodeJS = "2bd173c7-0d6d-553b-b6af-13a54713934c"
 Pluto = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
 PlutoHooks = "0ff47ea0-7a50-410d-8455-4348d5de0774"
 PlutoLinks = "0ff47ea0-7a50-410d-8455-4348d5de0420"
@@ -801,7 +800,6 @@ Deno_jll = "~1.16.3"
 Franklin = "~0.10.69"
 HypertextLiteral = "~0.9.3"
 JSON3 = "~1.9.2"
-NodeJS = "~1.3.0"
 Pluto = "~0.18.0"
 PlutoHooks = "~0.0.4"
 PlutoLinks = "~0.1.4"
@@ -1356,7 +1354,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═c5e00f30-e734-4b59-97b9-8e5f59fd131e
 # ╠═0b81d3ff-fa78-48c3-878c-24f9d6a34f20
 # ╠═02e00e09-76a5-4f38-8557-4d9caf280b4c
-# ╠═01a2336a-5c04-4d5a-bb0b-a9c704517dbf
+# ╟─01a2336a-5c04-4d5a-bb0b-a9c704517dbf
 # ╠═c0768146-5ea0-4736-94f8-2c1a2affa922
 # ╟─41b00a73-f42d-4e9e-86bb-49ff9105d949
 # ╠═8781d8d4-0dff-4b24-9500-6ba4ec586f9b
@@ -1375,20 +1373,20 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═fb914eec-bc9c-4dd4-b92e-f507c7d0b150
 # ╠═680b5653-a0a0-48ad-87ca-583a1655a05c
 # ╠═c012ae32-3b48-460c-8b1a-0b3e06f5fda0
-# ╠═06bfaeee-a6ee-439c-b965-94d0455b0337
-# ╠═35b80456-039e-45bc-963e-5466a3e9c3a7
-# ╠═a965eb6b-8c70-4986-a7b1-99c820c45716
-# ╠═140990ab-0a8c-4000-b17d-30e2f33dfd5f
+# ╟─06bfaeee-a6ee-439c-b965-94d0455b0337
+# ╟─35b80456-039e-45bc-963e-5466a3e9c3a7
+# ╟─a965eb6b-8c70-4986-a7b1-99c820c45716
+# ╟─140990ab-0a8c-4000-b17d-30e2f33dfd5f
 # ╠═9b12c862-3604-4046-8d68-89dd2d198883
 # ╟─a24bf899-87b0-4a2e-a6d4-30ac2aad4820
-# ╠═d7098dc2-fe08-4545-921c-6ad3d2648c91
+# ╟─d7098dc2-fe08-4545-921c-6ad3d2648c91
 # ╟─2bba13d3-0c1d-4d17-bd70-526ce70407fb
-# ╠═fd5f6637-3223-4f0b-94a6-ace86f5a5926
+# ╟─fd5f6637-3223-4f0b-94a6-ace86f5a5926
 # ╠═feaed8af-05d0-4b80-9f69-8f827f9343a8
 # ╠═4a7a342d-4bf2-455d-9cf9-52a827e180d4
-# ╠═98fb1e6a-c57c-4d66-972f-3471c6c15dd7
-# ╠═6775885d-0340-462e-bdeb-1e9076d94925
-# ╠═444502c9-33b5-4bb2-9a8d-a8d8e1adb632
+# ╟─98fb1e6a-c57c-4d66-972f-3471c6c15dd7
+# ╟─6775885d-0340-462e-bdeb-1e9076d94925
+# ╟─444502c9-33b5-4bb2-9a8d-a8d8e1adb632
 # ╠═544518ea-d36d-4e80-855e-93895a8cc35d
 # ╟─4489fbec-39b9-454f-ad17-3a1101d335ce
 # ╠═8eac52e6-6a5e-4519-9b4c-80aadbf27573
@@ -1396,13 +1394,13 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═a8ae5287-e7b6-4b68-ac26-4bc55ee86fe6
 # ╠═6ee83d91-b1d1-4b1e-95ca-6874e44167da
 # ╠═5ec6013c-da21-4cdb-b43f-16d997bc8446
-# ╠═adc183d3-2615-4334-88f0-2f8f0876b4b7
+# ╟─adc183d3-2615-4334-88f0-2f8f0876b4b7
 # ╠═bb5bca01-8f95-49a5-8e50-2ad013c6b804
 # ╠═48570953-88d3-4010-a5e3-2034bda26413
 # ╟─9979265f-60dd-42d4-9384-afaf4bf53ba2
-# ╠═cebba3d4-f255-4039-bba4-0673ac4e700b
-# ╠═2087dbd4-ea11-450f-92e3-4c24f3fa8f76
-# ╠═b007e5cc-d7c3-4275-86fd-9098bc398b23
+# ╟─cebba3d4-f255-4039-bba4-0673ac4e700b
+# ╟─2087dbd4-ea11-450f-92e3-4c24f3fa8f76
+# ╟─b007e5cc-d7c3-4275-86fd-9098bc398b23
 # ╠═5f93b932-6739-4b7e-bfdb-1bc1f7d57e65
 # ╟─96aa002c-cebc-41f7-97cf-ecd02081b6ce
 # ╠═866746a1-8102-431c-94e5-f93f6c98e825
@@ -1423,10 +1421,10 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═729efdbc-9556-4d34-bcef-1dfff2fba6bb
 # ╠═ccdea15d-1182-4d96-a7ab-26aa59a6002e
 # ╠═811bffb7-1041-4f96-b2e6-f24ddce8d753
-# ╠═c0d7eb1c-7b6f-446f-ab50-7d7a49a5b1b1
-# ╠═1780b6d1-5e53-48e0-8675-f78645e7c576
-# ╠═669ca7b1-9433-4391-b849-2f1cc7f4aa49
-# ╠═e6e791d7-0f29-404a-8bdf-0c5f25d48da7
+# ╟─c0d7eb1c-7b6f-446f-ab50-7d7a49a5b1b1
+# ╟─1780b6d1-5e53-48e0-8675-f78645e7c576
+# ╟─669ca7b1-9433-4391-b849-2f1cc7f4aa49
+# ╟─e6e791d7-0f29-404a-8bdf-0c5f25d48da7
 # ╠═2234f31d-89f3-4e58-8d89-e7ae9aa5b2db
 # ╠═29a3e3f4-1c7a-44e4-89c2-ce12d31f4fd7
 # ╟─4d78b60b-7311-4735-892b-1719729611d7
