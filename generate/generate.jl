@@ -454,10 +454,7 @@ begin
 	mkpath(franklin_page_dir)
 	franklin_config()
 	cd(website_dir)
-	using Logging
-	Logging.with_logger(Logging.NullLogger()) do
- 		Franklin.optimize(; minify = false)
- 	end
+ 	Franklin.optimize(; minify = false)
 	#cp(joinpath(website_dir, "__site"), franklin_page_dir, force = true)
 	cd(current_dir)
 end
