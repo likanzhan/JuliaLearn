@@ -41,15 +41,15 @@ md"""
 给定投射矩阵 $P = I - 1/n$, 一个数组的离差（`x - mean(x)`） 可以通过矩阵和数组的乘积来计算 `Px`
 
 ```math
-\text{Dev}(x_j) = x_j - \text{mean}(X)
-```
+\begin{align}
 
-```math
-= x_j - \frac{x_1 + \cdots + x_i + \cdots + x_n}{n}
-```
+\text{Dev}(x_j) 
+& = x_j - \text{mean}(X) \\
 
-```math
-= \frac{n - 1}{n}x_j + \frac{-1}{n}x_1 + \cdots + \frac{-1}{n}x_{j-1} + \frac{-1}{n}x_{j+1} + \cdots + \frac{1}{n}x_n
+& = x_j - \frac{x_1 + \cdots + x_i + \cdots + x_n}{n} \\
+
+& = \frac{n - 1}{n}x_j + \frac{-1}{n}x_1 + \cdots + \frac{-1}{n}x_{j-1} + \frac{-1}{n}x_{j+1} + \cdots + \frac{1}{n}x_n
+\end{align}
 ```
 
 如果把投射矩阵做特征值分解， 即 $P = Q \Lambda Q'$， 那么 $\Lambda$ 将有一个值为 0， 其余值为 1。
