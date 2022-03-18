@@ -298,15 +298,23 @@ let y = :x
 	)
 end
 
-# ╔═╡ 4faba05d-20eb-4a3e-99b4-f6f32279cf1d
+# ╔═╡ 18c148cb-4570-4d78-bcfa-931948aa869e
 md"""
-## MMM
+Julia 在对宏本体求值之前对其参数进行的是真引用而非伪引用。 其原因在于， 从底层看插入和拼接是位于运行阶段的概念， 用于捕获运行阶段数值。
 
+此特征的一个重要后果是**宏无法执行标准的插值和拼接操作**。 如果你需要在宏中执行插值和拼接操作， 你需要在宏内部进行插值模拟。 例如， `BenchmarkTools.jl` 中的宏 `@btime` 具实用了[模拟操作](https://discourse.julialang.org/t/interpolation-in-macro-calls/25530)。 你可以试着阅读一下 [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl) 的底层代码， 以查看该包是如何利用拼接算子的句法来捕获本地变量而不影响测试结果的。
+
+从另一方面来讲， 宏执行的是真引用而非伪引用也就意味着你能给插入和拼接算子赋予非标准的语义。
 """
 
 # ╔═╡ 2f1bd642-693e-4255-aa44-4661a28c69b3
 md"""
 ### WWW 建构于表达式之上的函数
+"""
+
+# ╔═╡ 42d51254-a51f-4379-84fa-534d75ec7a17
+md"""
+
 """
 
 # ╔═╡ 7fae7a9b-3985-4547-a717-6375c58e62fd
@@ -713,12 +721,13 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─8b102cba-3d07-408c-be44-f1b96d8b68ca
 # ╠═8802e2e4-11ea-48d8-929b-145944f4c4d8
 # ╠═c27aafb7-b211-4a6e-b013-01a98bb57a54
-# ╟─4faba05d-20eb-4a3e-99b4-f6f32279cf1d
+# ╟─18c148cb-4570-4d78-bcfa-931948aa869e
 # ╟─2f1bd642-693e-4255-aa44-4661a28c69b3
+# ╠═42d51254-a51f-4379-84fa-534d75ec7a17
 # ╠═7fae7a9b-3985-4547-a717-6375c58e62fd
 # ╠═feb85b7b-57e8-4e02-aa70-907fadc87985
-# ╠═d830da2d-5ef6-4a99-9bee-3bb264e8da1e
 # ╠═3c43b095-dea0-499a-8cfc-288016aa289f
+# ╠═d830da2d-5ef6-4a99-9bee-3bb264e8da1e
 # ╠═b7cda82e-aadb-45ae-a89a-87750aac13cf
 # ╠═8912fe22-9d87-4526-a7d0-f9c90a4bcae7
 # ╠═1a70d5d4-ec58-4267-9cc8-6c45385ae6ac

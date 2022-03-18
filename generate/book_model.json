@@ -49,6 +49,12 @@
         "title": "Julia 博客",
         "contents": [
             {
+                "name": "展示数据类型结构",
+                "notebook_path": "notebooks/JuliaBlogs/2022-03-18-Draw-Data-Type.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
                 "name": "数据列的嵌套和去嵌套",
                 "notebook_path": "notebooks/JuliaBlogs/2022-03-11-DataFrames-Nesting-Unnesting-Columns.jl",
                 "video_id": "",
