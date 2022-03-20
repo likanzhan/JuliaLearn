@@ -17,6 +17,12 @@
 
 ## 概率和统计
 
+### 数据科学
+
+- Kamiński, B. (2022). *Julia for Data Analysis*. Manning. || [链接](https://www.manning.com/books/julia-for-data-analysis?utm_source=github&utm_medium=author&utm_campaign=book_kaminski2_julia_3_17_22). [github](https://github.com/bkamins/JuliaForDataAnalysis)
+
+- Storopoli, J., Huijzer, R.,  & Alonso, L. (2021). *Julia Data Science*. || [链接](https://juliadatascience.io)
+
 ### 概率知识
 
 - Billingsley, P. (2012). *Probability and Measure*. Wiley.
