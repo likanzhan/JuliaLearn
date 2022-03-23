@@ -33,7 +33,9 @@
 
 ### 频率统计
 
-- Nazarathy, Y., & Klok, H. (2021). *Statistics with Julia: Fundamentals for data science, machine learning and artificial intelligence*. Springer. || [网站](https://statisticswithjulia.org), [github](https://github.com/h-Klok/StatsWithJuliaBook), [Pluto](https://github.com/StatisticalRethinkingJulia/StatisticsWithJuliaPlutoNotebooks.jl) 
+- Fox, J. (2016). *Applied Regression Analysis and Generalized Linear Models* (3 ed.). SAGE.
+
+- Nazarathy, Y., & Klok, H. (2021). *Statistics with Julia: Fundamentals for data science, machine learning and artificial intelligence*. Springer. || [网站](https://statisticswithjulia.org), [github](https://github.com/h-Klok/StatsWithJuliaBook), [Pluto](https://github.com/StatisticalRethinkingJulia/StatisticsWithJuliaPlutoNotebooks.jl)
 
 ### 贝叶斯统计
 

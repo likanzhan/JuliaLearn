@@ -38,6 +38,12 @@
                 "preview_image_url": ""
             },
             {
+                "name": "描述统计",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-03-23-Descriptive_Statistics.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
                 "name": "一个例子",
                 "notebook_path": "notebooks/FrequentistStatistics/01-Distributions.jl",
                 "video_id": "",
