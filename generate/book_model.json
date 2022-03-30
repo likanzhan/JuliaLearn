@@ -44,8 +44,8 @@
                 "preview_image_url": ""
             },
             {
-                "name": "一个例子",
-                "notebook_path": "notebooks/FrequentistStatistics/01-Distributions.jl",
+                "name": "数据可视化",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-03-30-plots.jl",
                 "video_id": "",
                 "preview_image_url": ""
             }
