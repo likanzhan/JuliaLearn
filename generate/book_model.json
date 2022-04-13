@@ -44,8 +44,20 @@
                 "preview_image_url": ""
             },
             {
-                "name": "数据可视化",
+                "name": "数据可视化1",
                 "notebook_path": "notebooks/FrequentistStatistics/2022-03-30-plots.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "数据可视化2",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-04-06-Density_Plot.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "数据可视化3",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-04-13-Plots-more.jl",
                 "video_id": "",
                 "preview_image_url": ""
             }

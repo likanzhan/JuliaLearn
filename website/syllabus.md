@@ -5,8 +5,12 @@
 | 1 | 数据整理 | 2022-03-02 | [调用类型](/notebooks/notebooks_DataScience_2022-03-02-Value-Reference) | 第四章 |
 | 2 | 数据整理 | 2022-03-09 | [数据转化](/notebooks/notebooks_DataScience_2022-03-09-DataFrame_Join_Transofrm) | 第四章 |
 | 3 | 描述统计 | 2022-03-16 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-03-16-DataFrame-Variance) | 第四章 |
-| 4 | 描述统计 | 2022-03-16 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-03-23-Descriptive_Statistics) | 第四章 |
-| 5 | 一维做图 | 2022-03-16 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-03-30-plots) | 第四章 |
+| 4 | 描述统计 | 2022-03-23 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-03-23-Descriptive_Statistics) | 第四章 |
+| 5 | 一维做图 | 2022-03-30 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-03-30-plots) | 第四章 |
+| 5 | 一维做图 | 2022-04-06 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-04-06-Density_Plot) | 第四章 |
+| 5 | 一维做图 | 2022-04-13 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-04-13-Plots-more) | 第四章 |
+
+
 
 # 参考书目
 
