@@ -4,7 +4,64 @@
         "contents": [
             {
                 "name": "初识 Julia",
-                "notebook_path": "notebooks/DataScience/01-Introducing-Julia.jl",
+                "notebook_path": "notebooks/DataScience/2021-09-06-Introducing-Julia.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },            {
+                "name": "随机数",
+                "notebook_path": "notebooks/DataScience/2021-09-13-RandomNumbers.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },            {
+                "name": "做图（1）",
+                "notebook_path": "notebooks/DataScience/2021-09-20-PlotsImages1.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },            {
+                "name": "做图（2）",
+                "notebook_path": "notebooks/DataScience/2021-10-11-PlotsImages2.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },            {
+                "name": "做图（3）",
+                "notebook_path": "notebooks/DataScience/2021-10-18-PlotsImages3.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },            {
+                "name": "马克夫链",
+                "notebook_path": "notebooks/DataScience/2021-10-25-MarkovChain.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },            {
+                "name": "嵌入其他语言",
+                "notebook_path": "notebooks/DataScience/2021-11-01-Integration.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },            {
+                "name": "随机试验（1）",
+                "notebook_path": "notebooks/DataScience/2021-11-08-RandomExperiments1.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },            {
+                "name": "随机试验（2）",
+                "notebook_path": "notebooks/DataScience/2021-11-15-RandomExperiments2.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },            {
+                "name": "集合运算",
+                "notebook_path": "notebooks/DataScience/2021-11-22-Sets.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "独立性",
+                "notebook_path": "notebooks/DataScience/2021-11-29-Independence.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "贝叶斯规则",
+                "notebook_path": "notebooks/DataScience/2021-12-06-BayesRule.jl",
                 "video_id": "",
                 "preview_image_url": ""
             },
