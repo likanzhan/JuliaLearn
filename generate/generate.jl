@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.18.1
+# v0.19.0
 
 using Markdown
 using InteractiveUtils
@@ -24,7 +24,7 @@ using HypertextLiteral
 using PlutoUI: TableOfContents, Button
 
 # ╔═╡ b14f33ae-89a7-473b-ac9b-1db0208faca7
-using PlutoSliderServer
+using PlutoSliderServer, Logging
 
 # ╔═╡ d45c8768-87e2-4f3c-8763-089ec43f1733
 using Pluto:Pluto, without_pluto_file_extension
@@ -452,7 +452,10 @@ begin
 	mkpath(franklin_page_dir)
 	franklin_config()
 	cd(website_dir)
- 	Franklin.optimize(; minify = false)
+ 	# Franklin.optimize(; minify = false)
+	Logging.with_logger(Logging.NullLogger()) do
+ 		Franklin.optimize(; minify = false)
+ 	end
 	#cp(joinpath(website_dir, "__site"), franklin_page_dir, force = true)
 	cd(current_dir)
 end
@@ -735,7 +738,10 @@ end
 notebook_htmls_generated = let
 	output_filenames
 	
-	PlutoSliderServer.export_directory(pluto_notebooks_output_dir; Export_cache_dir=pluto_cache_dir)
+	Logging.with_logger(Logging.NullLogger()) do
+  		PlutoSliderServer.export_directory(
+			pluto_notebooks_output_dir; Export_cache_dir=pluto_cache_dir)
+	end
 end; GENERATED_NOTEBOOKS = 0
 
 # ╔═╡ ccdea15d-1182-4d96-a7ab-26aa59a6002e
@@ -779,6 +785,7 @@ Deno_jll = "04572ae6-984a-583e-9378-9577a1c2574d"
 Franklin = "713c75ef-9fc9-4b05-94a9-213340da978e"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
 Pluto = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
 PlutoHooks = "0ff47ea0-7a50-410d-8455-4348d5de0774"
 PlutoLinks = "0ff47ea0-7a50-410d-8455-4348d5de0420"
@@ -1368,8 +1375,8 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═680b5653-a0a0-48ad-87ca-583a1655a05c
 # ╠═c012ae32-3b48-460c-8b1a-0b3e06f5fda0
 # ╟─06bfaeee-a6ee-439c-b965-94d0455b0337
-# ╟─35b80456-039e-45bc-963e-5466a3e9c3a7
-# ╟─a965eb6b-8c70-4986-a7b1-99c820c45716
+# ╠═35b80456-039e-45bc-963e-5466a3e9c3a7
+# ╠═a965eb6b-8c70-4986-a7b1-99c820c45716
 # ╟─140990ab-0a8c-4000-b17d-30e2f33dfd5f
 # ╠═9b12c862-3604-4046-8d68-89dd2d198883
 # ╟─a24bf899-87b0-4a2e-a6d4-30ac2aad4820

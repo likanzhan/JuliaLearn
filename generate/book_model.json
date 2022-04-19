@@ -67,7 +67,7 @@
             },
             {
                 "name": "用 Julia 分析新冠数据",
-                "notebook_path": "notebooks/DataScience/11-Covid-with-Julia.jl",
+                "notebook_path": "notebooks/DataScience/2021-12-13-Covid-with-Julia.jl",
                 "video_id": "",
                 "preview_image_url": ""
             },
