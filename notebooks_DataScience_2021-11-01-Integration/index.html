@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../css/franklin.css">
+    <link rel="stylesheet" href="../css/poole_hyde.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <!-- style adjustments -->
+    <style>
+        html {
+            font-size: 17px;
+        }
+
+        .franklin-content {
+            position: relative;
+            padding-left: 8%;
+            padding-right: 5%;
+            line-height: 1.35em;
+        }
+
+        @media (min-width: 940px) {
+            .franklin-content {
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .franklin-content {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+        }
+    </style>
+	
+    <link rel="icon" href="../assets/favicon.png">
+
+    <title>Julia 语言</title>
+</head>
+
+<body>
+        <div class="sidebar">
+    <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+    <br>
+    <img src="/JuliaLearn/assets/julia-logo.svg" style="margin-left:1em; width: 80px; height: auto; display: inline">
+    <div style="font-weight: bold; margin-bottom: 0.5em"><a href="/JuliaLearn/semesters/">2022</a> <span style="opacity: 0.6;">| BLCU</span></div>
+    <h1><a href="/JuliaLearn/">Julia 语言</a></h1>
+    <h2>由此开始</h2>
+    <div style="line-height:18px; font-size: 15px; opacity: 0.85"> - <a href="https://likan.org">战立侃</a>
+</div>
+    </div>
+    <br>
+    <style>
+    </style>
+    <nav class="sidebar-nav" style="opacity: 0.9">
+	<a class="sidebar-nav-item {{ispage /index.html}}active{{end}}" href="/JuliaLearn/"><b>写在前面</b></a>
+
+	<a class="sidebar-nav-item {{ispage /syllabus/}}active{{end}}" href="/JuliaLearn/syllabus/">课程大纲</a>
+
+<a class="sidebar-nav-item {{ispage /installation/}}active{{end}}" href="/JuliaLearn/installation/">软件安装</a>
+
+<a class="sidebar-nav-item {{ispage /cheatsheets/}}active{{end}}" href="/JuliaLearn/cheatsheets/">相关资源</a>
+
+    <br>
+    <div class="course-section"> 1. Julia 与数据科学</div>
+
+<a class="sidebar-nav-item {{ispage /2021-09-06-Introducing-Julia/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-09-06-Introducing-Julia/"><b>1.1</b> - <em>初识 Julia</em></a>
+<a class="sidebar-nav-item {{ispage /2021-09-13-RandomNumbers/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-09-13-RandomNumbers/"><b>1.2</b> - <em>随机数</em></a>
+<a class="sidebar-nav-item {{ispage /2021-09-20-PlotsImages1/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-09-20-PlotsImages1/"><b>1.3</b> - <em>做图（1）</em></a>
+<a class="sidebar-nav-item {{ispage /2021-10-11-PlotsImages2/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-10-11-PlotsImages2/"><b>1.4</b> - <em>做图（2）</em></a>
+<a class="sidebar-nav-item {{ispage /2021-10-18-PlotsImages3/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-10-18-PlotsImages3/"><b>1.5</b> - <em>做图（3）</em></a>
+<a class="sidebar-nav-item {{ispage /2021-10-25-MarkovChain/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-10-25-MarkovChain/"><b>1.6</b> - <em>马克夫链</em></a>
+<a class="sidebar-nav-item {{ispage /2021-11-01-Integration/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-11-01-Integration/"><b>1.7</b> - <em>嵌入其他语言</em></a>
+<a class="sidebar-nav-item {{ispage /2021-11-08-RandomExperiments1/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-11-08-RandomExperiments1/"><b>1.8</b> - <em>随机试验（1）</em></a>
+<a class="sidebar-nav-item {{ispage /2021-11-15-RandomExperiments2/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-11-15-RandomExperiments2/"><b>1.9</b> - <em>随机试验（2）</em></a>
+<a class="sidebar-nav-item {{ispage /2021-11-22-Sets/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-11-22-Sets/"><b>1.10</b> - <em>集合运算</em></a>
+<a class="sidebar-nav-item {{ispage /2021-11-29-Independence/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-11-29-Independence/"><b>1.11</b> - <em>独立性</em></a>
+<a class="sidebar-nav-item {{ispage /2021-12-06-BayesRule/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-12-06-BayesRule/"><b>1.12</b> - <em>贝叶斯规则</em></a>
+<a class="sidebar-nav-item {{ispage /2021-12-13-Covid-with-Julia/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2021-12-13-Covid-with-Julia/"><b>1.13</b> - <em>用 Julia 分析新冠数据</em></a>
+<a class="sidebar-nav-item {{ispage /2022-03-02-Value-Reference/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2022-03-02-Value-Reference/"><b>1.14</b> - <em>调用类型</em></a>
+<a class="sidebar-nav-item {{ispage /2022-03-09-DataFrame_Join_Transofrm/}}active{{end}}" href="/JuliaLearn/notebooks_DataScience_2022-03-09-DataFrame_Join_Transofrm/"><b>1.15</b> - <em>合并和转化</em></a>
+
+<div class="course-section"> 2. Julia 与统计分析</div>
+
+<a class="sidebar-nav-item {{ispage /2022-03-16-DataFrame-Variance/}}active{{end}}" href="/JuliaLearn/notebooks_FrequentistStatistics_2022-03-16-DataFrame-Variance/"><b>2.1</b> - <em>描述统计</em></a>
+<a class="sidebar-nav-item {{ispage /2022-03-23-Descriptive_Statistics/}}active{{end}}" href="/JuliaLearn/notebooks_FrequentistStatistics_2022-03-23-Descriptive_Statistics/"><b>2.2</b> - <em>描述统计</em></a>
+<a class="sidebar-nav-item {{ispage /2022-03-30-plots/}}active{{end}}" href="/JuliaLearn/notebooks_FrequentistStatistics_2022-03-30-plots/"><b>2.3</b> - <em>数据可视化1</em></a>
+<a class="sidebar-nav-item {{ispage /2022-04-06-Density_Plot/}}active{{end}}" href="/JuliaLearn/notebooks_FrequentistStatistics_2022-04-06-Density_Plot/"><b>2.4</b> - <em>数据可视化2</em></a>
+<a class="sidebar-nav-item {{ispage /2022-04-13-Plots-more/}}active{{end}}" href="/JuliaLearn/notebooks_FrequentistStatistics_2022-04-13-Plots-more/"><b>2.5</b> - <em>数据可视化3</em></a>
+
+<div class="course-section"> 3. Julia 博客</div>
+
+<a class="sidebar-nav-item {{ispage /2022-03-18-Draw-Data-Type/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2022-03-18-Draw-Data-Type/"><b>3.1</b> - <em>展示数据类型结构</em></a>
+<a class="sidebar-nav-item {{ispage /2022-03-11-DataFrames-Nesting-Unnesting-Columns/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2022-03-11-DataFrames-Nesting-Unnesting-Columns/"><b>3.2</b> - <em>数据列的嵌套和去嵌套</em></a>
+<a class="sidebar-nav-item {{ispage /2022-03-08-Sample_Variance/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2022-03-08-Sample_Variance/"><b>3.3</b> - <em>样本方差为什么除以 n-1 ？</em></a>
+<a class="sidebar-nav-item {{ispage /2022-03-04-macro-invocation/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2022-03-04-macro-invocation/"><b>3.4</b> - <em>宏调用的注意事项</em></a>
+<a class="sidebar-nav-item {{ispage /2022-03-03-Dataframe-subset/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2022-03-03-Dataframe-subset/"><b>3.5</b> - <em>函数 subset 的使用限制</em></a>
+<a class="sidebar-nav-item {{ispage /2022-02-15-Closure/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2022-02-15-Closure/"><b>3.6</b> - <em>什么是闭包</em></a>
+<a class="sidebar-nav-item {{ispage /2021-11-26-Makie/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2021-11-26-Makie/"><b>3.7</b> - <em>用 Makie 作图</em></a>
+<a class="sidebar-nav-item {{ispage /2021-11-25-Scatter_Boundary/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2021-11-25-Scatter_Boundary/"><b>3.8</b> - <em>给散点图添加边界线</em></a>
+<a class="sidebar-nav-item {{ispage /2021-11-21-View_Not_Getindex/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2021-11-21-View_Not_Getindex/"><b>3.9</b> - <em>用 view 而非 getindex</em></a>
+<a class="sidebar-nav-item {{ispage /2021-11-19-Sum_Notes/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2021-11-19-Sum_Notes/"><b>3.10</b> - <em>带感叹号的求和</em></a>
+<a class="sidebar-nav-item {{ispage /2021-11-07-Function_Compose/}}active{{end}}" href="/JuliaLearn/notebooks_JuliaBlogs_2021-11-07-Function_Compose/"><b>3.11</b> - <em>函数的整合</em></a>
+
+
+
+    <br>
+    </nav>
+    </div>
+    </div>
+	
+    <div class="content container">
+
+        <!-- Content appended here -->
+        <div class="franklin-content">
+			<style>
+
+.content {
+    max-width: 100%;
+    margin-right: 0px;
+    padding: 0px;
+    overflow-y: hidden;
+    height: 100vh;
+}
+.franklin-content {
+    padding: 0px;
+}
+.page-foot {
+    display: none;
+}
+.plutopage {
+    height: 100vh;
+}
+.smallscreenlink {
+    display: none;
+}
+@media (max-width: 768px) {
+    .franklin-content {
+        padding: 0px;
+    }
+}
+</style>
+
+	
+<iframe width="100%" height="100%" src='../notebooks/notebooks_DataScience_2021-11-01-Integration.html' class="plutopage" frameborder="0" allow="accelerometer; ambient-light-sensor; autoplay; battery; camera; display-capture; document-domain; encrypted-media; execution-while-not-rendered; execution-while-out-of-viewport; fullscreen; geolocation; gyroscope; layout-animations; legacy-image-formats; magnetometer; microphone; midi; navigation-override; oversized-images; payment; picture-in-picture; publickey-credentials-get; sync-xhr; usb; wake-lock; screen-wake-lock; vr; web-share; xr-spatial-tracking" allowfullscreen></iframe>
+
+
+
+        </div><!-- CONTENT ENDS HERE -->
+
+    </div> <!-- div: content container -->
+
+    
+</body>
+
+</html>
