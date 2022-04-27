@@ -9,7 +9,8 @@
 | 5 | 一维做图 | 2022-03-30 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-03-30-plots) | 第四章 |
 | 6 | 一维做图 | 2022-04-06 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-04-06-Density_Plot) | 第四章 |
 | 7 | 一维做图 | 2022-04-13 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-04-13-Plots-more) | 第四章 |
-| 8 | 多维做图 | 2022-04-13 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-04-20-Plots-vilion-pie) | 第四章 |
+| 8 | 多维做图 | 2022-04-10 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-04-20-Plots-vilion-pie) | 第四章 |
+| 9 | 数据分布 | 2022-04-27 | [推论统计](/notebooks/notebooks_FrequentistStatistics_2022-04-27-random_variable) | 第五章 |
 
 # 参考书目
 

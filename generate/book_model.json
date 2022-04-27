@@ -123,6 +123,12 @@
                 "notebook_path": "notebooks/FrequentistStatistics/2022-04-20-Plots-vilion-pie.jl",
                 "video_id": "",
                 "preview_image_url": ""
+            },
+            {
+                "name": "概率分布",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-04-27-random_variable.jl",
+                "video_id": "",
+                "preview_image_url": ""
             }
         ]
     },
