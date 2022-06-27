@@ -18,7 +18,7 @@ end
 using JSON3
 
 # ╔═╡ 60d603c3-c1e7-4d49-820f-288d20de70f5
-using HypertextLiteral: @htl
+using HypertextLiteral
 
 # ╔═╡ 6a3614fb-81bd-474d-85cf-06725846a6c0
 using PlutoUI: TableOfContents, Button
@@ -27,7 +27,7 @@ using PlutoUI: TableOfContents, Button
 using PlutoSliderServer, Logging
 
 # ╔═╡ d45c8768-87e2-4f3c-8763-089ec43f1733
-using Pluto: Pluto, without_pluto_file_extension
+using Pluto:Pluto, without_pluto_file_extension
 
 # ╔═╡ c64ebd9b-66a3-4f6c-8f8b-36f6b9ce8f19
 using PlutoHooks: @skip_as_script
@@ -60,19 +60,8 @@ SUBTITLE = "由此开始"
 # ╔═╡ 4be56e57-fea0-4fbe-9659-44bed594b1b2
 INSTITUTION = "BLCU"
 
-# ╔═╡ c9f17f9f-766a-4137-92c5-f8173561a7bc
-INSTITUTION_URL = "https://likan.org"
-
 # ╔═╡ ab7186a4-2287-41da-a939-70f142bfeacd
 TERM = "2022"
-
-# ╔═╡ a31d893d-2cde-4228-a506-6af013fe1f3e
-LOGO_FILE = "julia-logo.svg"
-
-# ╔═╡ dbb5e02a-2485-4ada-98d1-cc24fd6fc418
-md"""
-Colors of the sidebar can be adjusted in the css file.
-"""
 
 # ╔═╡ 83130e69-9b67-44b5-ad32-500162abc0d2
 md"""
@@ -104,17 +93,17 @@ show_section_number = true
 
 # ╔═╡ 01a2336a-5c04-4d5a-bb0b-a9c704517dbf
 pages = [
-	# (page = "/logistics/", title = ""),
+	# (page = "/logistics/", title = "Class Logistics"),
 	(page = "/syllabus/", title = "课程大纲"),
 	(page = "/installation/", title = "软件安装"),
-	(page = "/cheatsheets/", title = "相关资源")
+	(page = "/cheatsheets/",  title = "相关资源")
 ]
 
 # ╔═╡ c0768146-5ea0-4736-94f8-2c1a2affa922
 SLASH_PREPATH = !isempty(PREPATH) ? "/" * PREPATH : ""
 
 # ╔═╡ 02e00e09-76a5-4f38-8557-4d9caf280b4c
-homepage = (page = "/index.html", path = "$SLASH_PREPATH/", title = "写在前面")
+homepage = (page = "/index.html", href = "$SLASH_PREPATH/", title = "写在前面")
 
 # ╔═╡ d83ee9b9-d255-4217-a776-3b0f4f168c8f
 @bind regenerate Button("Regenerate!")
@@ -203,39 +192,32 @@ md"""
 # Sidebar
 """
 
-# ╔═╡ feaed8af-05d0-4b80-9f69-8f827f9343a8
-bold(text) = @htl("<b>$(text)</b>")
-
-# ╔═╡ 4a7a342d-4bf2-455d-9cf9-52a827e180d4
-emph(text) = @htl("<em>$(text)</em>")
-
-# ╔═╡ b5b07aac-1681-46ac-a234-198ba8261882
-href(path, text) = @htl("<a href=$(path)>$(text)</a>")
-
 # ╔═╡ fd5f6637-3223-4f0b-94a6-ace86f5a5926
 function instructors(INSTRUCTORS)
-	tmp = map(INSTRUCTORS) do (; name, url)
-		href(url, name)
+	tmp = map(INSTRUCTORS) do (; name, href)
+		"""
+		<a href="$href">$name</a>
+		"""
 	end
 	join(tmp, ", ", "&amp " ) |> HTML
 end
 
 # ╔═╡ 3e93e57c-3660-416f-9874-d43abf99e60e
 INSTRUCTORS = [
-	(name = "战立侃", url = "https://likan.org"),
+	(name = "战立侃", href = "https://likan.org"),
 ] |> instructors
 
-# ╔═╡ d78c58e5-3ecb-45ee-972e-20fc90ece3cc
-path_to_asset(file) = joinpath(SLASH_PREPATH, "assets", file)
+# ╔═╡ feaed8af-05d0-4b80-9f69-8f827f9343a8
+bold(text) = @htl("<b>$(text)</b>")
 
-# ╔═╡ f4d1018b-8f25-4478-91b8-ea55e66fe542
-joinpath(@__DIR__(), path_to_asset(LOGO_FILE)) |> isfile
+# ╔═╡ 4a7a342d-4bf2-455d-9cf9-52a827e180d4
+emph(text) = @htl("<em>$(text)</em>")
 
 # ╔═╡ 98fb1e6a-c57c-4d66-972f-3471c6c15dd7
-function sidebar_page(; page, title, path="$(SLASH_PREPATH)$(page)", isbold = false)
+function sidebar_page(; page, title, href="$(SLASH_PREPATH)$(page)", isbold = false)
 	title = isbold ? bold(title) : title
 	@htl("""
-	<a class="sidebar-nav-item {{ispage $(page)}}active{{end}}" href="$(path)">$(title)</a>
+	<a class="sidebar-nav-item {{ispage $(page)}}active{{end}}" href="$(href)">$(title)</a>
 	""")
 end
 
@@ -264,16 +246,11 @@ function sidebar_code(book_model)
     <div class="container sidebar-sticky">
     <div class="sidebar-about">
     <br>
-    <img src="$(path_to_asset(LOGO_FILE))" style="margin-left:1em; width: 80px; height: auto; display: inline">
-    <div style="font-weight: bold; margin-bottom: 0.5em">
-	$(href("$(SLASH_PREPATH)/semesters/", TERM))
-	<span style="opacity: 0.6;">|
-	$(href(INSTITUTION_URL,INSTITUTION))
-	</span>
-	</div>
-    <h1>$(href("$(SLASH_PREPATH)/",TITLE))</h1>
+    <img src="$(SLASH_PREPATH)/assets/julia-logo.svg" style="margin-left:1em; width: 80px; height: auto; display: inline">
+    <div style="font-weight: bold; margin-bottom: 0.5em"><a href="$(SLASH_PREPATH)/semesters/">$(TERM)</a> <span style="opacity: 0.6;">| $(INSTITUTION)</span></div>
+    <h1><a href="$(SLASH_PREPATH)/">$(TITLE)</a></h1>
     <h2>$(SUBTITLE)</h2>
-    <div style="line-height:18px; font-size: 15px; opacity: 0.85"> $(INSTRUCTORS)</div>
+    <div style="line-height:18px; font-size: 15px; opacity: 0.85"> - $(INSTRUCTORS)</div>
     </div>
     <br>
     <style>
@@ -284,7 +261,7 @@ function sidebar_code(book_model)
     <br>
     $(map(enumerate(book_model)) do (chapter_number, chap)
 		@htl("""
-		<div class="course-section">Module $(chapter_number): $(chap.title)</div>
+		<div class="course-section"> $(chapter_number). $(chap.title)</div>
 		
 		$(map(enumerate(chap.contents)) do (section_number, section)
 
@@ -433,7 +410,9 @@ _powered by Franklin.jl_
 """
 
 # ╔═╡ 9cb9559a-cbe4-4a4a-b974-cb9a3573f67d
-import Franklin
+begin
+ 	import Franklin
+end
 
 # ╔═╡ 0e1a2d5b-16da-49e9-98b3-6f1202fd0fa1
 begin
@@ -453,8 +432,7 @@ function franklin_config()
 	open(franklin_config_file, "a") do f
 
 		write(f, 
-			"""
-			
+			"""		
 			@def title = "$TITLE"
 			@def prepath = "$PREPATH"
 			@def description = "$TITLE - $SUBTITLE"
@@ -470,14 +448,14 @@ begin
 	franklin_page_dir = joinpath(website_dir, "__site")
 	if isdir(franklin_page_dir)
 		rm(franklin_page_dir, recursive = true)
-		#@info "removed" franklin_page_dir
 	end
 	mkpath(franklin_page_dir)
 	franklin_config()
 	cd(website_dir)
+ 	# Franklin.optimize(; minify = false)
 	Logging.with_logger(Logging.NullLogger()) do
-		Franklin.optimize(; minify = false)
-	end
+ 		Franklin.optimize(; minify = false)
+ 	end
 	#cp(joinpath(website_dir, "__site"), franklin_page_dir, force = true)
 	cd(current_dir)
 end
@@ -761,7 +739,8 @@ notebook_htmls_generated = let
 	output_filenames
 	
 	Logging.with_logger(Logging.NullLogger()) do
-		PlutoSliderServer.export_directory(pluto_notebooks_output_dir; Export_cache_dir=pluto_cache_dir)
+  		PlutoSliderServer.export_directory(
+			pluto_notebooks_output_dir; Export_cache_dir=pluto_cache_dir)
 	end
 end; GENERATED_NOTEBOOKS = 0
 
@@ -817,16 +796,16 @@ StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
 UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 
 [compat]
-Chain = "~0.5.0"
-Deno_jll = "~1.20.4"
-Franklin = "~0.10.75"
-HypertextLiteral = "~0.9.4"
-JSON3 = "~1.9.5"
-Pluto = "~0.19.9"
-PlutoHooks = "~0.0.5"
-PlutoLinks = "~0.1.5"
-PlutoSliderServer = "~0.3.11"
-PlutoUI = "~0.7.39"
+Chain = "~0.4.10"
+Deno_jll = "~1.16.3"
+Franklin = "~0.10.69"
+HypertextLiteral = "~0.9.3"
+JSON3 = "~1.9.2"
+Pluto = "~0.18.0"
+PlutoHooks = "~0.0.4"
+PlutoLinks = "~0.1.4"
+PlutoSliderServer = "~0.3.5"
+PlutoUI = "~0.7.34"
 StructTypes = "~1.8.1"
 """
 
@@ -864,9 +843,9 @@ uuid = "c9fd44ac-77b5-486c-9482-9798bd063cc6"
 version = "0.1.5"
 
 [[deps.Chain]]
-git-tree-sha1 = "8c4920235f6c561e401dfe569beb8b924adad003"
+git-tree-sha1 = "339237319ef4712e6e5df7758d0bccddf5c237d9"
 uuid = "8be319e6-bccf-4806-a6f7-6fae938471bc"
-version = "0.5.0"
+version = "0.4.10"
 
 [[deps.CodeTracking]]
 deps = ["InteractiveUtils", "UUIDs"]
@@ -915,9 +894,9 @@ uuid = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 
 [[deps.Deno_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
-git-tree-sha1 = "970da1e64a94f13b51c81691c376a1d5a83a0b3c"
+git-tree-sha1 = "244309ef7003f30c7a5fe571f6b860c6b032b691"
 uuid = "04572ae6-984a-583e-9378-9577a1c2574d"
-version = "1.20.4+0"
+version = "1.16.3+0"
 
 [[deps.Distributed]]
 deps = ["Random", "Serialization", "Sockets"]
@@ -1124,11 +1103,6 @@ git-tree-sha1 = "dedbebe234e06e1ddad435f5c6f4b85cd8ce55f7"
 uuid = "6f1432cf-f94c-5a45-995e-cdbf5db27b0b"
 version = "2.2.2"
 
-[[deps.MIMEs]]
-git-tree-sha1 = "65f28ad4b594aebe22157d6fac869786a255b7eb"
-uuid = "6c6e2e6c-3030-632d-7369-2d6c69616d65"
-version = "0.1.4"
-
 [[deps.Markdown]]
 deps = ["Base64"]
 uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
@@ -1194,10 +1168,10 @@ deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markd
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 
 [[deps.Pluto]]
-deps = ["Base64", "Configurations", "Dates", "Distributed", "FileWatching", "FuzzyCompletions", "HTTP", "HypertextLiteral", "InteractiveUtils", "Logging", "MIMEs", "Markdown", "MsgPack", "Pkg", "PrecompileSignatures", "REPL", "RelocatableFolders", "Sockets", "TOML", "Tables", "URIs", "UUIDs"]
-git-tree-sha1 = "87b0f17b2a71eb4a20b61eed34975055fe5537dd"
+deps = ["Base64", "Configurations", "Dates", "Distributed", "FileWatching", "FuzzyCompletions", "HTTP", "InteractiveUtils", "Logging", "Markdown", "MsgPack", "Pkg", "REPL", "RelocatableFolders", "Sockets", "Tables", "UUIDs"]
+git-tree-sha1 = "1302c9385c9e5b47f9872688015927f7929371cb"
 uuid = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
-version = "0.19.9"
+version = "0.18.4"
 
 [[deps.PlutoHooks]]
 deps = ["InteractiveUtils", "Markdown", "UUIDs"]
@@ -1212,21 +1186,16 @@ uuid = "0ff47ea0-7a50-410d-8455-4348d5de0420"
 version = "0.1.5"
 
 [[deps.PlutoSliderServer]]
-deps = ["AbstractPlutoDingetjes", "Base64", "BetterFileWatching", "Configurations", "Distributed", "FromFile", "Git", "GitHubActions", "HTTP", "JSON", "Logging", "Pkg", "Pluto", "SHA", "Sockets", "TOML", "TerminalLoggers", "UUIDs"]
-git-tree-sha1 = "5496bc77ee81a91187dc3b9de3a32a631c562575"
+deps = ["AbstractPlutoDingetjes", "Base64", "BetterFileWatching", "Configurations", "Distributed", "FromFile", "Git", "GitHubActions", "HTTP", "Logging", "Pkg", "Pluto", "SHA", "Sockets", "TOML", "TerminalLoggers", "UUIDs"]
+git-tree-sha1 = "c2e5b15ce5bbb6c837a55fe4759190dd06ef43f9"
 uuid = "2fc8631c-6f24-4c5b-bca7-cbb509c42db4"
-version = "0.3.11"
+version = "0.3.9"
 
 [[deps.PlutoUI]]
 deps = ["AbstractPlutoDingetjes", "Base64", "ColorTypes", "Dates", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "JSON", "Logging", "Markdown", "Random", "Reexport", "UUIDs"]
 git-tree-sha1 = "8d1f54886b9037091edf146b517989fc4a09efec"
 uuid = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 version = "0.7.39"
-
-[[deps.PrecompileSignatures]]
-git-tree-sha1 = "18ef344185f25ee9d51d80e179f8dad33dc48eb1"
-uuid = "91cefc8d-f054-46dc-8f8c-26e11d7c5411"
-version = "3.0.3"
 
 [[deps.Preferences]]
 deps = ["TOML"]
@@ -1259,9 +1228,9 @@ version = "1.2.2"
 
 [[deps.RelocatableFolders]]
 deps = ["SHA", "Scratch"]
-git-tree-sha1 = "22c5201127d7b243b9ee1de3b43c408879dff60f"
+git-tree-sha1 = "307761d71804208c0c62abdbd0ea6822aa5bbefd"
 uuid = "05181044-ff0b-4ac5-8273-598c1e38db00"
-version = "0.3.0"
+version = "0.2.0"
 
 [[deps.Requires]]
 deps = ["UUIDs"]
@@ -1384,11 +1353,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═a0057e4c-0bcf-4970-8a2b-0412ad5af510
 # ╠═3e93e57c-3660-416f-9874-d43abf99e60e
 # ╠═4be56e57-fea0-4fbe-9659-44bed594b1b2
-# ╠═c9f17f9f-766a-4137-92c5-f8173561a7bc
 # ╠═ab7186a4-2287-41da-a939-70f142bfeacd
-# ╠═a31d893d-2cde-4228-a506-6af013fe1f3e
-# ╠═f4d1018b-8f25-4478-91b8-ea55e66fe542
-# ╟─dbb5e02a-2485-4ada-98d1-cc24fd6fc418
 # ╟─83130e69-9b67-44b5-ad32-500162abc0d2
 # ╟─5b7892c6-ca5c-4c3a-b5d8-0a6323ee2fa9
 # ╠═88e1e91d-0d48-42e0-b4ab-4866624fd745
@@ -1396,11 +1361,11 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═c5e00f30-e734-4b59-97b9-8e5f59fd131e
 # ╠═0b81d3ff-fa78-48c3-878c-24f9d6a34f20
 # ╠═02e00e09-76a5-4f38-8557-4d9caf280b4c
-# ╠═01a2336a-5c04-4d5a-bb0b-a9c704517dbf
+# ╟─01a2336a-5c04-4d5a-bb0b-a9c704517dbf
 # ╠═c0768146-5ea0-4736-94f8-2c1a2affa922
+# ╟─41b00a73-f42d-4e9e-86bb-49ff9105d949
 # ╠═8781d8d4-0dff-4b24-9500-6ba4ec586f9b
 # ╟─d83ee9b9-d255-4217-a776-3b0f4f168c8f
-# ╟─41b00a73-f42d-4e9e-86bb-49ff9105d949
 # ╠═e8169711-6e94-45e0-9c41-b4d4692af328
 # ╠═6eb94b8c-b972-4c80-9644-1bd6568dc943
 # ╠═149b7852-ae23-447a-80bb-24cdd7993cfe
@@ -1415,22 +1380,20 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═fb914eec-bc9c-4dd4-b92e-f507c7d0b150
 # ╠═680b5653-a0a0-48ad-87ca-583a1655a05c
 # ╠═c012ae32-3b48-460c-8b1a-0b3e06f5fda0
-# ╠═06bfaeee-a6ee-439c-b965-94d0455b0337
+# ╟─06bfaeee-a6ee-439c-b965-94d0455b0337
 # ╠═35b80456-039e-45bc-963e-5466a3e9c3a7
 # ╠═a965eb6b-8c70-4986-a7b1-99c820c45716
-# ╠═140990ab-0a8c-4000-b17d-30e2f33dfd5f
+# ╟─140990ab-0a8c-4000-b17d-30e2f33dfd5f
 # ╠═9b12c862-3604-4046-8d68-89dd2d198883
 # ╟─a24bf899-87b0-4a2e-a6d4-30ac2aad4820
-# ╠═d7098dc2-fe08-4545-921c-6ad3d2648c91
+# ╟─d7098dc2-fe08-4545-921c-6ad3d2648c91
 # ╟─2bba13d3-0c1d-4d17-bd70-526ce70407fb
-# ╠═fd5f6637-3223-4f0b-94a6-ace86f5a5926
+# ╟─fd5f6637-3223-4f0b-94a6-ace86f5a5926
 # ╠═feaed8af-05d0-4b80-9f69-8f827f9343a8
 # ╠═4a7a342d-4bf2-455d-9cf9-52a827e180d4
-# ╠═b5b07aac-1681-46ac-a234-198ba8261882
-# ╠═d78c58e5-3ecb-45ee-972e-20fc90ece3cc
-# ╠═98fb1e6a-c57c-4d66-972f-3471c6c15dd7
-# ╠═6775885d-0340-462e-bdeb-1e9076d94925
-# ╠═444502c9-33b5-4bb2-9a8d-a8d8e1adb632
+# ╟─98fb1e6a-c57c-4d66-972f-3471c6c15dd7
+# ╟─6775885d-0340-462e-bdeb-1e9076d94925
+# ╟─444502c9-33b5-4bb2-9a8d-a8d8e1adb632
 # ╠═544518ea-d36d-4e80-855e-93895a8cc35d
 # ╟─4489fbec-39b9-454f-ad17-3a1101d335ce
 # ╠═8eac52e6-6a5e-4519-9b4c-80aadbf27573
@@ -1438,15 +1401,15 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═a8ae5287-e7b6-4b68-ac26-4bc55ee86fe6
 # ╠═6ee83d91-b1d1-4b1e-95ca-6874e44167da
 # ╠═5ec6013c-da21-4cdb-b43f-16d997bc8446
-# ╠═adc183d3-2615-4334-88f0-2f8f0876b4b7
+# ╟─adc183d3-2615-4334-88f0-2f8f0876b4b7
 # ╠═bb5bca01-8f95-49a5-8e50-2ad013c6b804
 # ╠═48570953-88d3-4010-a5e3-2034bda26413
 # ╟─9979265f-60dd-42d4-9384-afaf4bf53ba2
-# ╠═cebba3d4-f255-4039-bba4-0673ac4e700b
-# ╠═2087dbd4-ea11-450f-92e3-4c24f3fa8f76
-# ╠═b007e5cc-d7c3-4275-86fd-9098bc398b23
+# ╟─cebba3d4-f255-4039-bba4-0673ac4e700b
+# ╟─2087dbd4-ea11-450f-92e3-4c24f3fa8f76
+# ╟─b007e5cc-d7c3-4275-86fd-9098bc398b23
 # ╠═5f93b932-6739-4b7e-bfdb-1bc1f7d57e65
-# ╟─96aa002c-cebc-41f7-97cf-ecd02081b6ce
+# ╠═96aa002c-cebc-41f7-97cf-ecd02081b6ce
 # ╠═866746a1-8102-431c-94e5-f93f6c98e825
 # ╟─d15f2d13-0885-4da2-950d-fbbdd83f3907
 # ╠═9cb9559a-cbe4-4a4a-b974-cb9a3573f67d
@@ -1465,10 +1428,10 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═729efdbc-9556-4d34-bcef-1dfff2fba6bb
 # ╠═ccdea15d-1182-4d96-a7ab-26aa59a6002e
 # ╠═811bffb7-1041-4f96-b2e6-f24ddce8d753
-# ╠═c0d7eb1c-7b6f-446f-ab50-7d7a49a5b1b1
-# ╠═1780b6d1-5e53-48e0-8675-f78645e7c576
-# ╠═669ca7b1-9433-4391-b849-2f1cc7f4aa49
-# ╠═e6e791d7-0f29-404a-8bdf-0c5f25d48da7
+# ╟─c0d7eb1c-7b6f-446f-ab50-7d7a49a5b1b1
+# ╟─1780b6d1-5e53-48e0-8675-f78645e7c576
+# ╟─669ca7b1-9433-4391-b849-2f1cc7f4aa49
+# ╟─e6e791d7-0f29-404a-8bdf-0c5f25d48da7
 # ╠═2234f31d-89f3-4e58-8d89-e7ae9aa5b2db
 # ╠═29a3e3f4-1c7a-44e4-89c2-ce12d31f4fd7
 # ╟─4d78b60b-7311-4735-892b-1719729611d7

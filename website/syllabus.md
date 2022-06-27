@@ -11,6 +11,14 @@
 | 7 | 一维做图 | 2022-04-13 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-04-13-Plots-more) | 第四章 |
 | 8 | 多维做图 | 2022-04-10 | [描述统计](/notebooks/notebooks_FrequentistStatistics_2022-04-20-Plots-vilion-pie) | 第四章 |
 | 9 | 数据分布 | 2022-04-27 | [推论统计](/notebooks/notebooks_FrequentistStatistics_2022-04-27-random_variable) | 第五章 |
+| 10 | 数据分布 | 2022-05-11 | [推论统计](/notebooks/notebooks_FrequentistStatistics_2022-05-11-icdf) | 第五章 |
+| 11 | 数据分布 | 2022-05-18 | [推论统计](/notebooks/notebooks_FrequentistStatistics_2022-05-18-DiscreteDistribution) | 第五章 |
+| 12 | 数据分布 | 2022-05-25 | [推论统计](/notebooks/notebooks_FrequentistStatistics_2022-05-25-DiscreteDistribution2) | 第五章 |
+| 13 | 数据分布 | 2022-06-01 | [推论统计](/notebooks/notebooks_FrequentistStatistics_2022-06-01-ContinuousDisctribution) | 第五章 |
+| 14 | 数据分布 | 2022-06-08 | [推论统计](/notebooks/notebooks_FrequentistStatistics_2022-06-08-LMM) | 其他 |
+| 15 | 混合模型 | 2022-06-15 | [推论统计](/notebooks/notebooks_FrequentistStatistics_2022-06-15-22-LMM2) | 其他 |
+| 16 | 混合模型 | 2022-06-22 | [推论统计](/notebooks/notebooks_FrequentistStatistics_2022-06-15-22-LMM2) | 其他 |
+
 
 # 参考书目
 

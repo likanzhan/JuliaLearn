@@ -129,6 +129,42 @@
                 "notebook_path": "notebooks/FrequentistStatistics/2022-04-27-random_variable.jl",
                 "video_id": "",
                 "preview_image_url": ""
+            },
+            {
+                "name": "概率分布",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-05-11-icdf.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "概率分布",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-05-18-DiscreteDistribution.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "概率分布",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-05-25-DiscreteDistribution2.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "概率分布",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-06-01-ContinuousDisctribution.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "混合模型",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-06-08-LMM.jl",
+                "video_id": "",
+                "preview_image_url": ""
+            },
+            {
+                "name": "混合模型",
+                "notebook_path": "notebooks/FrequentistStatistics/2022-06-15-22-LMM2.jl",
+                "video_id": "",
+                "preview_image_url": ""
             }
         ]
     },
