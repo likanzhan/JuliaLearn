@@ -1,11 +1,8 @@
 ### A Pluto.jl notebook ###
-# v0.18.0
+# v0.19.9
 
 using Markdown
 using InteractiveUtils
-
-# ╔═╡ f5450eab-0f9f-4b7f-9b80-992d3c553ba9
-
 
 # ╔═╡ a8bb4934-fbf8-11eb-1993-c5cfde0aab84
 function walk(num_steps)

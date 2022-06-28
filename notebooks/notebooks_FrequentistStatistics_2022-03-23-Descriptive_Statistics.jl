@@ -1,11 +1,8 @@
 ### A Pluto.jl notebook ###
-# v0.18.0
+# v0.19.9
 
 using Markdown
 using InteractiveUtils
-
-# ╔═╡ f5450eab-0f9f-4b7f-9b80-992d3c553ba9
-
 
 # ╔═╡ e86bb3ca-aa4e-11ec-1d23-490dbe238b9d
 using Random

@@ -1,11 +1,8 @@
 ### A Pluto.jl notebook ###
-# v0.18.0
+# v0.19.9
 
 using Markdown
 using InteractiveUtils
-
-# ╔═╡ f5450eab-0f9f-4b7f-9b80-992d3c553ba9
-
 
 # ╔═╡ c44c7124-3c39-11ec-19fb-d754bcad0c6c
 using PlutoUI; PlutoUI.TableOfContents(title = "初识 Julia", aside = false)
